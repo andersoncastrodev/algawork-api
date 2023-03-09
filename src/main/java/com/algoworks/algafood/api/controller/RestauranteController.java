@@ -22,6 +22,8 @@ import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/restaurantes")
 public class RestauranteController {
@@ -75,7 +77,7 @@ public class RestauranteController {
 	
 	@PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-	public Restaurante adicionar(@RequestBody Restaurante restaurante) {
+	public Restaurante adicionar(@RequestBody @Valid Restaurante restaurante) {
 		
 		try {
 			
