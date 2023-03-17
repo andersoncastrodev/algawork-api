@@ -20,6 +20,8 @@ import com.algoworks.algafood.domain.model.Cozinha;
 import com.algoworks.algafood.domain.model.repository.CozinhaRepository;
 import com.algoworks.algafood.domain.service.CadastroCozinhaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping( value = "/cozinhas")
 public class CozinhaController {
@@ -64,7 +66,7 @@ public class CozinhaController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cozinha adicionar(@RequestBody Cozinha cozinha) {
+	public Cozinha adicionar(@RequestBody @Valid Cozinha cozinha) {
 		
 		try {
 			

@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.algoworks.algafood.grupos.Groups;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -18,7 +22,12 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.groups.ConvertGroup;
+import jakarta.validation.groups.Default;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -32,14 +41,24 @@ public class Restaurante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	//@NotNull
+	//@NotEmpty
+	//@NotBlank(groups = Groups.CadastroRestaurante.class) //Anotacao para usar o Groups 
+	@NotBlank
 	@Column(nullable = false)
 	private String nome;
 	
+	//@DecimalMin("1")
+	//@PositiveOrZero(groups = Groups.CadastroRestaurante.class)
+	@PositiveOrZero
 	@Column(name="taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 
-	@ManyToOne
+	@Valid
+	@ConvertGroup(from = Default.class, to = Groups.CozinhaId.class)
+	//@NotNull(groups = Groups.CadastroRestaurante.class) //Anotacao para usar o Groups
+	@NotNull
+	@ManyToOne 
 	@JoinColumn(name="cozinha_id" , nullable = false)
 	private Cozinha cozinha;
 	
