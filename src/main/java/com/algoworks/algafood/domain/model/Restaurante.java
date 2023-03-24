@@ -50,6 +50,7 @@ public class Restaurante {
 	
 	//@DecimalMin("1")
 	//@PositiveOrZero(groups = Groups.CadastroRestaurante.class)
+	@NotNull
 	@PositiveOrZero
 	@Column(name="taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;

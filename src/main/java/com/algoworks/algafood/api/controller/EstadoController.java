@@ -20,6 +20,8 @@ import com.algoworks.algafood.domain.model.Estado;
 import com.algoworks.algafood.domain.model.repository.EstadoRepository;
 import com.algoworks.algafood.domain.service.CadastroEstadoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/estados")
 public class EstadoController {
@@ -52,13 +54,13 @@ public class EstadoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Estado adicionar(@RequestBody Estado estado) {
+	public Estado adicionar(@RequestBody @Valid Estado estado) {
 		
 		return cadastroEstadoService.salvar(estado);
 	}
 	
 	@PutMapping("/{estadoId}")
-	public Estado atualizar(@PathVariable Long estadoId, @RequestBody Estado estado ){
+	public Estado atualizar(@PathVariable Long estadoId,@RequestBody @Valid Estado estado ){
 		
 		Estado estadoAtual = cadastroEstadoService.buscaOuFalha(estadoId);
 		
