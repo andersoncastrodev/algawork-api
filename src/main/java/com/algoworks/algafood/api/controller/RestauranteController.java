@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algoworks.algafood.api.model.RestauranteDTO;
 import com.algoworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
@@ -42,25 +43,14 @@ public class RestauranteController {
 	
 	@GetMapping("/{restauranteId}")
 	public Restaurante buscar(@PathVariable Long restauranteId) {
-		//Refatorando
-		return cadastroResturanteService.buscaOuFalhar(restauranteId);
 		
-		//Usando a expresso lambida 
-//		Restaurante restaurante = restauranteRepository.findById(restauranteId)
-//							      .orElseThrow( ()-> new EntidadeNaoEncontradaException("mensagem") );
-//								
-//	    return restaurante;	
+		//return cadastroResturanteService.buscaOuFalhar(restauranteId);
 		
+		Restaurante restaurante = cadastroResturanteService.buscaOuFalhar(restauranteId);
 		
-		//Codigo Antigo
-//	   Optional<Restaurante> restaurante = restauranteRepository.findById(restauranteId);
-//		
-//		if (restaurante.isPresent()) {
-//			
-//			return ResponseEntity.ok(restaurante.get());
-//		}
-//		
-//		return ResponseEntity.notFound().build();
+		RestauranteDTO restauranteDTO = null; //Converter Restaurante em RestauranteDTO.
+				
+		return null;
 	}
 	
 //	@PostMapping
