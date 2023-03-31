@@ -32,20 +32,6 @@ public class CadastroResturanteService {
 		
 		Cozinha cozinha = cadastroCozinhaService.buscaOuFalhar(cozinhaId);
 		
-//      Recomendado
-//		Cozinha cozinha = cozinhaRepository.findById(cozinhaId)
-//				.orElseThrow( ()-> new EntidadeNaoEncontradaException( String.format("Não existe cadastro de cozinha com o código %d", cozinhaId) ) 
-//						);
-//      Modo mais verboso. Mais codigo
-//		Optional<Cozinha> cozinha = cozinhaRepository.findById(cozinhaId);
-//		
-//		if( cozinha.isEmpty() ) {
-//			throw new EntidadeNaoEncontradaException(
-//					String.format("Não existe cadastro de cozinha com o código %d", cozinhaId) );
-//		}
-//		
-//		restaurante.setCozinha(cozinha.get());  //.get(); é usado porque estamos usado o OPTIONAL
-		
 		restaurante.setCozinha(cozinha);
 		
 		return restauranteRepository.save(restaurante);
