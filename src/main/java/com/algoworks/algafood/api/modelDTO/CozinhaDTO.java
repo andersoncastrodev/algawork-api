@@ -1,4 +1,4 @@
-package com.algoworks.algafood.api.model;
+package com.algoworks.algafood.api.modelDTO;
 
 import lombok.Getter;
 import lombok.Setter;

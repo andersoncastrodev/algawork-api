@@ -32,6 +32,7 @@ public class RestauranteInputDisassembler {
 		
 	}
 	
+	//Metodo que copia do ResturanteInput para o Restaurante Entidade
 	public void copyToDomainObject(RestauranteInput restauranteInput, Restaurante restaurante) {
 		 
 		// Para Evitar o erro

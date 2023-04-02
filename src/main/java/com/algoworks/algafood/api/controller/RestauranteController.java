@@ -2,7 +2,6 @@ package com.algoworks.algafood.api.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.algoworks.algafood.api.assembler.RestauranteInputDisassembler;
 import com.algoworks.algafood.api.assembler.RestauranteModelAssembler;
-import com.algoworks.algafood.api.model.RestauranteDTO;
 import com.algoworks.algafood.api.model.input.RestauranteInput;
+import com.algoworks.algafood.api.modelDTO.RestauranteDTO;
 import com.algoworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
