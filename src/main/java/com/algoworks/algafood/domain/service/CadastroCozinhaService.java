@@ -32,6 +32,7 @@ public class CadastroCozinhaService {
 		try {
 			
 			cozinhaRepository.deleteById(cozinhaId);
+			cozinhaRepository.flush(); //Diz para JPA descarregar tudo que ia salva no banco de dados.
 		}
 		catch (EmptyResultDataAccessException e) {
 			
