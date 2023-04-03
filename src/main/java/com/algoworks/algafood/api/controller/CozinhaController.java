@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.algoworks.algafood.api.assembler.CozinhaModelAssembler;
+import com.algoworks.algafood.api.modelDTO.CozinhaDTO;
 import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Cozinha;
@@ -35,11 +38,13 @@ public class CozinhaController {
 	@Autowired
 	private CadastroCozinhaService cadastroCozinhaService;
 	
+	@Autowired
+	private CozinhaModelAssembler cozinhaAssembler;
 	
 	@GetMapping
-	public List<Cozinha> listar(){
+	public List<CozinhaDTO> listar(){
 		
-		return cozinhaRepository.findAll();
+		return cozinhaAssembler.toColletionModel(cozinhaRepository.findAll());
 	}
 	
 	@GetMapping(value = "/{cozinhaId}")
