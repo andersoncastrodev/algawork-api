@@ -97,6 +97,24 @@ public class RestauranteController {
 		}
 	}
 	
+	//PUT /restaurante/{id}/ativo
+	//DELETE /restaurante/{id}/ativo
+	
+	
+	@PutMapping("/{restauranteId}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void ativar(@PathVariable Long restauranteId) {
+		
+		cadastroResturanteService.ativar(restauranteId);
+	}
+	
+	@DeleteMapping("/{restauranteId}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void inativar(@PathVariable Long restauranteId) {
+		
+		cadastroResturanteService.inativar(restauranteId);
+	}
+	
 	@DeleteMapping("/{restauranteId}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long restauranteId){	

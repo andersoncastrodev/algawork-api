@@ -70,6 +70,8 @@ public class Restaurante {
 	@Embedded
 	private Endereco endereco;
 	
+	private Boolean ativo = Boolean.TRUE;
+	
 	@JsonIgnore
 	@CreationTimestamp //Gera a Data e Hora atual.
 	@Column(nullable = false)
@@ -90,4 +92,12 @@ public class Restaurante {
 	@JsonIgnore
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
+	
+	public void ativar() {
+		setAtivo(true);
+	}
+	public void inativar() {
+		setAtivo(false);
+	}
+	
 }
