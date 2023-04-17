@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.algoworks.algafood.api.model.input.FormaPagamentoInput;
 import com.algoworks.algafood.api.modelDTO.FormaPagamentoDTO;
 import com.algoworks.algafood.domain.exception.FormaPagamentoNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
+import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
 import com.algoworks.algafood.domain.model.FormaPagamento;
 import com.algoworks.algafood.domain.model.repository.FormaPagamentoRepository;
 import com.algoworks.algafood.domain.service.CadastroFormaPagamentoService;
@@ -81,4 +83,19 @@ public class FormaPagamentoController {
 		}
 	
 	}
+	
+	@DeleteMapping("/{formapagamentoId}")
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long formapagamentoId) {
+		
+		try {
+			
+			cadastroFormaPagamentoService.excluir(formapagamentoId);
+			
+		} catch (FormaPagamentoNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+			
+	}
+	
 }
