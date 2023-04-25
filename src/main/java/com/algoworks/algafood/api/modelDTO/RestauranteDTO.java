@@ -1,7 +1,6 @@
 package com.algoworks.algafood.api.modelDTO;
 
 import java.math.BigDecimal;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +13,6 @@ public class RestauranteDTO {
 	private BigDecimal taxaFrete;
 	private CozinhaDTO cozinha;
 	private Boolean ativo;
+	private EnderecoDTO endereco;
+	
 }

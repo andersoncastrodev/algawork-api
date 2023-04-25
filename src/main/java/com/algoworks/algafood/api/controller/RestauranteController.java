@@ -18,6 +18,7 @@ import com.algoworks.algafood.api.assembler.RestauranteInputDisassembler;
 import com.algoworks.algafood.api.assembler.RestauranteModelAssembler;
 import com.algoworks.algafood.api.model.input.RestauranteInput;
 import com.algoworks.algafood.api.modelDTO.RestauranteDTO;
+import com.algoworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
@@ -57,7 +58,6 @@ public class RestauranteController {
 		return restauranteModelAssembler.toModelDTO(restaurante);
 	}
 
-
 	@PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
 	public RestauranteDTO adicionar(@RequestBody @Valid RestauranteInput restauranteInput) {
@@ -69,7 +69,7 @@ public class RestauranteController {
 			
 			return restauranteModelAssembler.toModelDTO(cadastroResturanteService.salvar(restaurante) );
 			
-		} catch (CozinhaNaoEncontradaException e) {
+		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
 		
@@ -92,14 +92,13 @@ public class RestauranteController {
 			
 			return restauranteModelAssembler.toModelDTO( cadastroResturanteService.salvar(restauranteAtual) );
 			
-		} catch (CozinhaNaoEncontradaException e) {
+		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
 	}
 	
 	//PUT /restaurante/{id}/ativo
 	//DELETE /restaurante/{id}/ativo
-	
 	
 	@PutMapping("/{restauranteId}/ativo")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
