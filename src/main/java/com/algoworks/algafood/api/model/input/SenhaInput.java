@@ -1,19 +1,17 @@
 package com.algoworks.algafood.api.model.input;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioInput {
+public class SenhaInput {
 
 	@NotBlank
-	private String nome;
+	private String senhaAtual;
 	
 	@NotBlank
-	@Email
-	private String email;
+	private String novaSenha;
 	
 }
