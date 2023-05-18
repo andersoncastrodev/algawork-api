@@ -1,10 +1,11 @@
 package com.algoworks.algafood.domain.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.UsuarioNaoEncontradoException;
 import com.algoworks.algafood.domain.model.Usuario;
@@ -18,6 +19,16 @@ public class CadastroUsuarioService {
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
+		
+		//Tirando o gerenciamento Automatico do JPA.
+		usuarioRepository.detach(usuario); 
+		
+		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
+		
+		//Verifica se o usuario tem o mesmo email.
+		if(usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario) ) {
+			throw new NegocioException(String.format("Já existe um usuário cadastrado com o e-mail %s", usuario.getEmail()));
+		}
 		
 		return 	usuarioRepository.save(usuario);
 	}

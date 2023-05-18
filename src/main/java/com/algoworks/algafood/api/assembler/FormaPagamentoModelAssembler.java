@@ -1,5 +1,6 @@
 package com.algoworks.algafood.api.assembler;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class FormaPagamentoModelAssembler {
 	}
 	
 	//Conversão de uma lista de objetos para uma outra Lista de Objetos. 
-	public List<FormaPagamentoDTO> toColletionModel(List<FormaPagamento> formaPagamentos){
+	public List<FormaPagamentoDTO> toColletionModel(Collection<FormaPagamento> formaPagamentos){
 	return formaPagamentos.stream()
 	.map(formapagamento -> toModelDTO(formapagamento))
 	.collect(Collectors.toList());

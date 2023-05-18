@@ -10,6 +10,7 @@ import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Cozinha;
+import com.algoworks.algafood.domain.model.FormaPagamento;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
 
@@ -28,6 +29,9 @@ public class CadastroResturanteService {
 	
 	@Autowired
 	private CadastroCidadeService cadastroCidadeService;
+	
+	@Autowired
+	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
 	
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
@@ -80,6 +84,32 @@ public class CadastroResturanteService {
 		return restauranteRepository.findById(restauranteId)
 				.orElseThrow( ()-> new RestauranteNaoEncontradaException(restauranteId) );
 	}
+	
+	
+	//Para fazer a desvinculação de Restaurante com Forma_de_Pagamento
+	@Transactional
+	public void desassociarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscaOuFalhar(restauranteId);
+		
+		//Buscando a Forma_de_Pagamento Pelo ID.
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
+		
+		//Retirando da Lista Formas de Pagamento que esta dentro de Restaurante.
+		restaurante.removeFormaPagamento(formaPagamento);
+	}
+	
+	//Para fazer a vinculação de Restaurante com Forma_de_Pagamento
+	@Transactional
+	public void associarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscaOuFalhar(restauranteId);
+		
+		//Buscando a Forma_de_Pagamento Pelo ID.
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
+		
+		//Retirando da Lista Formas de Pagamento que esta dentro de Restaurante.
+		restaurante.adicionarFormaPagamento(formaPagamento);
+	}
+	
 	
 	
 

@@ -3,7 +3,9 @@ package com.algoworks.algafood.domain.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -87,7 +89,7 @@ public class Restaurante {
 	@JoinTable(name = "restaurante_forma_pagamento", 
 	joinColumns = @JoinColumn(name = "restaurante_id"), 
 	inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id")  )
-	private List<FormaPagamento> formasPagamento = new ArrayList<>();
+	private Set<FormaPagamento> formasPagamento = new HashSet<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "restaurante")
@@ -100,4 +102,11 @@ public class Restaurante {
 		setAtivo(false);
 	}
 	
+	public boolean removeFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormasPagamento().remove(formaPagamento);
+	}
+
+	public boolean adicionarFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormasPagamento().add(formaPagamento);
+	}
 }
