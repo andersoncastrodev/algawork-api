@@ -3,16 +3,15 @@ package com.algoworks.algafood.domain.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.algoworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Estado;
 import com.algoworks.algafood.domain.model.repository.CidadeRepository;
 
-@Component
+@Service
 public class CadastroCidadeService {
 
 	private static final String MSG_CIDADE_EM_USO = "Cidade de código %d não pode ser removida. Pois esta em uso.";
