@@ -66,6 +66,7 @@ public class CadastroResturanteService {
 
 	@Transactional
 	public void ativar(Long restauranteId) {
+		
 		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
 		
 		//restauranteAtual.setAtivo(true);
@@ -110,7 +111,19 @@ public class CadastroResturanteService {
 		restaurante.adicionarFormaPagamento(formaPagamento);
 	}
 	
+	//Para abrir o restaurante
+	@Transactional
+	public void abrir(Long restauranteId) {
+		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		restauranteAtual.abrir();
+	}
 	
+	//Para fechar o restaurante
+	@Transactional
+	public void fechar(Long restauranteId) {
+		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		restauranteAtual.fechar();
+	}
 	
 
 }

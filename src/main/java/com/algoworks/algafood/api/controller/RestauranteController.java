@@ -73,7 +73,7 @@ public class RestauranteController {
 			throw new NegocioException(e.getMessage());
 		}
 		
-	}
+	}	
 	
 	@PutMapping("/{restauranteId}")
 	public RestauranteDTO atualizar(@PathVariable Long restauranteId,@RequestBody  @Valid RestauranteInput restauranteInput ) {
@@ -97,6 +97,20 @@ public class RestauranteController {
 		}
 	}
 	
+	@DeleteMapping("/{restauranteId}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long restauranteId){	
+		
+		try {
+			
+			cadastroResturanteService.remover(restauranteId);
+			
+		} catch (RestauranteNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+			
+	}
+	
 	//PUT /restaurante/{id}/ativo
 	//DELETE /restaurante/{id}/ativo
 	
@@ -113,20 +127,18 @@ public class RestauranteController {
 		
 		cadastroResturanteService.inativar(restauranteId);
 	}
-	
-	@DeleteMapping("/{restauranteId}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long restauranteId){	
-		
-		try {
-			
-			cadastroResturanteService.remover(restauranteId);
-			
-		} catch (RestauranteNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage(), e);
-		}
-			
+	               
+	@PutMapping("/{restauranteId}/abertura")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void abrir(@PathVariable Long restauranteId){
+		cadastroResturanteService.abrir(restauranteId);
+	}
+
+	@PutMapping("/{restauranteId}/fechamento")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void fechar(@PathVariable Long restauranteId){
+		cadastroResturanteService.fechar(restauranteId);
 	}
 	
-
+	
 }

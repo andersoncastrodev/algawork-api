@@ -30,6 +30,3 @@ insert into produto (ativo, descricao, nome, preco, restaurante_id ) values (1, 
 insert into produto (ativo, descricao, nome, preco, restaurante_id ) values (1, 'Arroz ao Leite', 'Arroz', 12.50, 2);
 insert into produto (ativo, descricao, nome, preco, restaurante_id ) values (1, 'Feijoada', 'Feijão', 25.50, 3);
 insert into produto (ativo, descricao, nome, preco, restaurante_id ) values (1, 'Baião ao Leite', 'Baião', 22, 4);
- 
- 
- 
