@@ -2,7 +2,10 @@ package com.algoworks.algafood.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,7 +46,9 @@ public class Usuario {
 	@JoinTable(name = "usuario_grupo" ,
 	joinColumns = @JoinColumn(name = "usuario_id"),
 	inverseJoinColumns = @JoinColumn(name = "grupo_id") )
-	private List<Grupo> grupos = new ArrayList<>();
+	//private List<Grupo> grupos = new ArrayList<>(); Antes
+	private Set<Grupo> grupos = new HashSet<>();
+	
 	
 	
 	//Verificação de Senha
@@ -54,5 +59,12 @@ public class Usuario {
 	public boolean senhaNaoCoincideCom(String senha) {
 		return !senhaCoincideCom(senha);
 	}
-	//Fim
+	
+	public boolean removerGrupo(Grupo grupo) {
+		return getGrupos().remove(grupo);
+	}
+	
+	public boolean adicionarGrupo(Grupo grupo) {
+		return getGrupos().add(grupo);
+	}
 }

@@ -43,7 +43,8 @@ public class GrupoPermissaoController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void associar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
 		cadastroGrupoService.associarPermissao(grupoId, permissaoId);
-	
 	}
+	
+	
 	
 }

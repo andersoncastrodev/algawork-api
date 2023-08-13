@@ -1,5 +1,6 @@
 package com.algoworks.algafood.api.assembler;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class GrupoModelAssembler {
 	
 	//Convert lista de Objeto Model para Lista de Objetos DTO.
 	// Usado o metodo criado a cima "toModelDTO"
-	public List<GrupoDTO> toColletionModel(List<Grupo> grupos){
+	public List<GrupoDTO> toColletionModel(Collection<Grupo> grupos){
 		return grupos.stream()
 				.map(grupo -> toModelDTO(grupo))
 				.collect(Collectors.toList());
