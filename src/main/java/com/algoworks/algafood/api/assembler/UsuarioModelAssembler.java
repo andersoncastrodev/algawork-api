@@ -1,5 +1,6 @@
 package com.algoworks.algafood.api.assembler;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class UsuarioModelAssembler {
 	}
 	
 	//Convert uma Lista complepa.
-	public List<UsuarioDTO> toColletionModel(List<Usuario> usuarios){
+	public List<UsuarioDTO> toColletionModel(Collection<Usuario> usuarios){
 		return usuarios.stream()
 				.map(usuario -> toModelDTO(usuario))
 				.collect(Collectors.toList());

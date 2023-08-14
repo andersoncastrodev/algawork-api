@@ -53,7 +53,7 @@ public class RestauranteController {
 	public RestauranteDTO buscar(@PathVariable Long restauranteId) {
 		
 		//return cadastroResturanteService.buscaOuFalhar(restauranteId);
-		Restaurante restaurante = cadastroResturanteService.buscaOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
 		
 		return restauranteModelAssembler.toModelDTO(restaurante);
 	}
@@ -82,7 +82,7 @@ public class RestauranteController {
 		//Restaurante restaurante =  restauranteInputDisassembler.toDomainObject(restauranteInput);
 		
 		//Codigo Refatorado
-		Restaurante restauranteAtual = cadastroResturanteService.buscaOuFalhar(restauranteId);
+		Restaurante restauranteAtual = cadastroResturanteService.buscarOuFalhar(restauranteId);
 		
 		restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
 		

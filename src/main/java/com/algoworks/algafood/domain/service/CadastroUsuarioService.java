@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.UsuarioNaoEncontradoException;
 import com.algoworks.algafood.domain.model.Grupo;
+import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.model.repository.UsuarioRepository;
 
@@ -82,6 +83,6 @@ public class CadastroUsuarioService {
 	    
 	    usuario.adicionarGrupo(grupo);
 	}
-	
+
 }
 

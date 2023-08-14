@@ -29,7 +29,7 @@ public class RestauranteFormaPagamentoController {
 	@GetMapping
 	public List<FormaPagamentoDTO> listar(@PathVariable Long restauranteId ){
 		
-		Restaurante restaurante = cadastroResturanteService.buscaOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
 		
 		return formaPagamentoModelAssembler.toColletionModel(restaurante.getFormasPagamento());
 		

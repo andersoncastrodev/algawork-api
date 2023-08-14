@@ -47,7 +47,7 @@ public class ResturanteProdutoController {
 	@GetMapping
 	public List<ProdutoDTO> listar(@PathVariable Long restauranteId){
 		
-		Restaurante restaurante = cadastroResturanteService.buscaOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
 
 		List<Produto> todosProdutos = produtoRepository.findByRestaurante(restaurante);
 		
@@ -67,7 +67,7 @@ public class ResturanteProdutoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProdutoDTO adicionar(@PathVariable Long restauranteId, @RequestBody @Valid ProdutoInput produtoInput) {
 		
-		Restaurante restaurante = cadastroResturanteService.buscaOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
 		
 		Produto produto = produtoInputDisassembler.toDomainObject(produtoInput);
 		

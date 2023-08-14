@@ -12,6 +12,7 @@ import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Cozinha;
 import com.algoworks.algafood.domain.model.FormaPagamento;
 import com.algoworks.algafood.domain.model.Restaurante;
+import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
 
 @Service
@@ -33,6 +34,9 @@ public class CadastroResturanteService {
 	@Autowired
 	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
 	
+	@Autowired
+	private CadastroUsuarioService cadastroUsuarioService;
+
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
 		
@@ -67,7 +71,7 @@ public class CadastroResturanteService {
 	@Transactional
 	public void ativar(Long restauranteId) {
 		
-		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		
 		//restauranteAtual.setAtivo(true);
 		  restauranteAtual.ativar();
@@ -75,13 +79,13 @@ public class CadastroResturanteService {
 	
 	@Transactional
 	public void inativar(Long restauranteId) {
-		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		
 		//restauranteAtual.setAtivo(false);
 		  restauranteAtual.inativar();
 	}
 	
-	public Restaurante buscaOuFalhar(Long restauranteId) {
+	public Restaurante buscarOuFalhar(Long restauranteId) {
 		return restauranteRepository.findById(restauranteId)
 				.orElseThrow( ()-> new RestauranteNaoEncontradaException(restauranteId) );
 	}
@@ -90,7 +94,7 @@ public class CadastroResturanteService {
 	//Para fazer a desvinculação de Restaurante com Forma_de_Pagamento
 	@Transactional
 	public void desassociarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
-		Restaurante restaurante = buscaOuFalhar(restauranteId);
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		
 		//Buscando a Forma_de_Pagamento Pelo ID.
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
@@ -102,7 +106,7 @@ public class CadastroResturanteService {
 	//Para fazer a vinculação de Restaurante com Forma_de_Pagamento
 	@Transactional
 	public void associarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
-		Restaurante restaurante = buscaOuFalhar(restauranteId);
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		
 		//Buscando a Forma_de_Pagamento Pelo ID.
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
@@ -114,16 +118,35 @@ public class CadastroResturanteService {
 	//Para abrir o restaurante
 	@Transactional
 	public void abrir(Long restauranteId) {
-		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		restauranteAtual.abrir();
 	}
 	
 	//Para fechar o restaurante
 	@Transactional
 	public void fechar(Long restauranteId) {
-		Restaurante restauranteAtual = buscaOuFalhar(restauranteId);
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		restauranteAtual.fechar();
 	}
+	
+	//Para desassociar um usuario a um restaurante
+	@Transactional
+	public void desassociarResponsavel(Long restauranteId, Long usuarioId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
+		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
+		
+		restaurante.removerResponsavel(usuario);
+	}
+	
+	//Para associar um usuario a um restaurante
+	@Transactional
+	public void associarResponsavel(Long restauranteId, Long usuarioId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
+	    Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
+	    
+	    restaurante.adicionarResponsavel(usuario);
+	}
+	
 	
 
 }
