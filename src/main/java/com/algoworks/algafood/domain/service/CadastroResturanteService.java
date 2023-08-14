@@ -1,12 +1,14 @@
 package com.algoworks.algafood.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
+import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Cozinha;
@@ -83,6 +85,20 @@ public class CadastroResturanteService {
 		
 		//restauranteAtual.setAtivo(false);
 		  restauranteAtual.inativar();
+	}
+	
+	//Ativar varios restuarantes em massa 
+	@Transactional
+	public void ativar(List<Long> restauranteIds) {
+		//chando o metodo avitar individual atravez de um forEach
+		restauranteIds.forEach( this::ativar ); 
+	}
+	
+	//Desativar varios restuarantes em massa 
+	@Transactional
+	public void inativar(List<Long> restauranteIds) {
+			//chando o metodo Inavitar individual atravez de um forEach
+			restauranteIds.forEach( this::inativar ); 	
 	}
 	
 	public Restaurante buscarOuFalhar(Long restauranteId) {

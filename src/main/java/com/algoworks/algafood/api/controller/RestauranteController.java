@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +37,7 @@ public class RestauranteController {
 	private RestauranteRepository restauranteRepository;
 
 	@Autowired
-	private CadastroResturanteService cadastroResturanteService;
+	private CadastroResturanteService cadastroResturanteService ;
 	
 	@Autowired
 	private RestauranteModelAssembler restauranteModelAssembler;
@@ -127,6 +128,33 @@ public class RestauranteController {
 		
 		cadastroResturanteService.inativar(restauranteId);
 	}
+	
+	
+	// PUT /restaurantes/ativacoes
+	// [1,3,4,5] - Lista do ids do restaurantes.
+	
+	// DELETE /restaurantes/ativacoes
+	// [1,3,4,5] - Lista do ids do restaurantes.
+	
+	@PutMapping("/ativacoes")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void ativarMultipos(@RequestBody List<Long> restauranteIds) {
+		try {
+			cadastroResturanteService.ativar(restauranteIds);
+		}catch (RestauranteNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+	}
+	
+	@DeleteMapping("/ativacoes")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void InativarMultipos(@RequestBody List<Long> restauranteIds) {
+		try {
+			cadastroResturanteService.inativar(restauranteIds);
+		}catch (RestauranteNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+	}
 	               
 	@PutMapping("/{restauranteId}/abertura")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -139,6 +167,5 @@ public class RestauranteController {
 	public void fechar(@PathVariable Long restauranteId){
 		cadastroResturanteService.fechar(restauranteId);
 	}
-	
 	
 }
