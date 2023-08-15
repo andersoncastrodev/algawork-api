@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +30,7 @@ public class Pedido {
 	private Long id;
 	
 	@Column(nullable = false)
-	private BigDecimal subTotal;
+	private BigDecimal subtotal;
 	
 	@Column(nullable = false)
 	private BigDecimal taxaFrete;
@@ -41,7 +41,8 @@ public class Pedido {
 	@Embedded
 	private Endereco enderecoEntrega;
 	
-	private StatusPedido statusPedido;
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status = StatusPedido.CRIADO;	
 	
 	@CreationTimestamp
 	@Column(nullable = false)
@@ -50,7 +51,7 @@ public class Pedido {
 	private LocalDateTime dataConfirmacao;
 	
 	private LocalDateTime dataCancelamento;
-	
+		
 	private LocalDateTime dataEntrega;
 	
 	@ManyToOne
@@ -68,5 +69,21 @@ public class Pedido {
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itemsPedidos = new ArrayList<>();
 	
+	
+	public void calcularValorTotal() {
+	    this.subtotal = getItemsPedidos().stream()
+	        .map(item -> item.getPrecoTotal())
+	        .reduce(BigDecimal.ZERO, BigDecimal::add);
+	    
+	    this.valorTotal = this.subtotal.add(this.taxaFrete);
+	}
+
+	public void definirFrete() {
+	    setTaxaFrete(getRestaurante().getTaxaFrete());
+	}
+
+	public void atribuirPedidoAosItens() {
+		getItemsPedidos().forEach(item -> item.setPedido(this));
+	}
 }
 	
