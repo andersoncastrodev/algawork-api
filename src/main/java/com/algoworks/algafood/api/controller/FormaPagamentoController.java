@@ -52,7 +52,7 @@ public class FormaPagamentoController {
 	@GetMapping("/{formapagamentoId}")
 	public FormaPagamentoDTO buscar(@PathVariable Long formapagamentoId) {
 		
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formapagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formapagamentoId);
 		return formaPagamentoModelAssembler.toModelDTO(formaPagamento);
 	}
 	
@@ -69,7 +69,7 @@ public class FormaPagamentoController {
 	public FormaPagamentoDTO atualizar(@PathVariable Long formapagamentoId,@RequestBody  @Valid FormaPagamentoInput formaPagamentoInput) {
 		
 		
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formapagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formapagamentoId);
 		
 		formaPagamentoInputDisassembler.copyToDomainObject(formaPagamentoInput, formaPagamento);
 		

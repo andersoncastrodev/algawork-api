@@ -53,7 +53,7 @@ public class CidadeController {
 	@GetMapping("/{cidadeId}")
 	public CidadeDTO buscar(@PathVariable Long cidadeId ) {
 		
-		return cidadeModelAssembler.toModelDTO( cadastroCidadeService.buscaOuFalhar(cidadeId)) ;	
+		return cidadeModelAssembler.toModelDTO( cadastroCidadeService.buscarOuFalhar(cidadeId)) ;	
 	}
 	
 
@@ -77,7 +77,7 @@ public class CidadeController {
 
 		try {
 			
-			Cidade cidadeAtual = cadastroCidadeService.buscaOuFalhar(cidadeId);
+			Cidade cidadeAtual = cadastroCidadeService.buscarOuFalhar(cidadeId);
 			
 			cidadeInputDiassembler.copyToDomainObject(cidade, cidadeAtual);
 			//BeanUtils.copyProperties(cidade, cidadeAtual, "id");			

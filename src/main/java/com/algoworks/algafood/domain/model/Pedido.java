@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -67,12 +69,13 @@ public class Pedido {
 	@JoinColumn(name = "usuario_cliente_id", nullable = false)
 	private Usuario cliente;
 	
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itemsPedidos = new ArrayList<>();
 	
 	
 	public void calcularValorTotal() {
-	    this.subtotal = getItemsPedidos().stream()
+		getItemsPedidos().forEach(ItemPedido::calcularPrecoTotal);
+		this.subtotal = getItemsPedidos().stream()
 	        .map(item -> item.getPrecoTotal())
 	        .reduce(BigDecimal.ZERO, BigDecimal::add);
 	    

@@ -46,7 +46,7 @@ public class CadastroResturanteService {
 		Long cidadeId = restaurante.getEndereco().getCidade().getId();
 		
 		Cozinha cozinha = cadastroCozinhaService.buscaOuFalhar(cozinhaId);
-		Cidade cidade = cadastroCidadeService.buscaOuFalhar(cidadeId);
+		Cidade cidade = cadastroCidadeService.buscarOuFalhar(cidadeId);
 		
 		restaurante.setCozinha(cozinha);
 		restaurante.getEndereco().setCidade(cidade);
@@ -113,7 +113,7 @@ public class CadastroResturanteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		
 		//Buscando a Forma_de_Pagamento Pelo ID.
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
 		
 		//Retirando da Lista Formas de Pagamento que esta dentro de Restaurante.
 		restaurante.removeFormaPagamento(formaPagamento);
@@ -125,7 +125,7 @@ public class CadastroResturanteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		
 		//Buscando a Forma_de_Pagamento Pelo ID.
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscaOuFalha(formaPagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
 		
 		//Retirando da Lista Formas de Pagamento que esta dentro de Restaurante.
 		restaurante.adicionarFormaPagamento(formaPagamento);
