@@ -2,6 +2,7 @@ package com.algoworks.algafood.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,13 +50,13 @@ public class Pedido {
 	
 	@CreationTimestamp
 	@Column(nullable = false)
-	private LocalDateTime dataCriacao;
+	private OffsetDateTime dataCriacao;
 	
-	private LocalDateTime dataConfirmacao;
+	private OffsetDateTime dataConfirmacao;
 	
-	private LocalDateTime dataCancelamento;
+	private OffsetDateTime dataCancelamento;
 		
-	private LocalDateTime dataEntrega;
+	private OffsetDateTime dataEntrega;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "forma_pagamento_id", nullable = false)
