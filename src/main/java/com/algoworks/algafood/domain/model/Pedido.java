@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.algoworks.algafood.domain.exception.NegocioException;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -92,31 +90,5 @@ public class Pedido {
 	public void atribuirPedidoAosItens() {
 		getItemsPedidos().forEach(item -> item.setPedido(this));
 	}
-	
-	public void confirmar() {
-		setStatus(StatusPedido.CONFIRMADO);
-		setDataConfirmacao(OffsetDateTime.now());
-	}
-	
-	public void entregar() {
-		setStatus(StatusPedido.ENTREGUE);
-		setDataEntrega(OffsetDateTime.now());
-	}
-	
-	public void cancelar() {
-		setStatus(StatusPedido.CANCELADO);
-		setDataCancelamento(OffsetDateTime.now());
-	}
-	
-	private void setStatus(StatusPedido novoStatus) {
-		if(getStatus().naoPodeAlterarPara(novoStatus)){
-			throw new NegocioException(String.format("Status do pedido %s não pode ser alterado de %s para %s",
-					getId(), 
-					getStatus().getDescricao(), 
-					novoStatus.getDescricao()));
-		}
-		this.status = novoStatus;
-	}
-	
 }
 	
