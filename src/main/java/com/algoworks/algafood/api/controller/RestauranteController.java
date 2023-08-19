@@ -26,6 +26,8 @@ import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
+import com.algoworks.algafood.view.RestauranteView;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.validation.Valid;
 
@@ -45,6 +47,7 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 	
+	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
 	@GetMapping
 	public List<RestauranteDTO> listar(){
 		return restauranteModelAssembler.toColletionModel( restauranteRepository.findAll() );
