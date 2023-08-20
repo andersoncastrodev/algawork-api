@@ -3,6 +3,7 @@ package com.algoworks.algafood.api.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,8 @@ import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.model.repository.PedidoRepository;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import jakarta.validation.Valid;
 
@@ -47,10 +50,25 @@ public class PedidoController {
 	
 	
 	@GetMapping
-	public List<PedidoResumoDTO> listar(){
+	public MappingJacksonValue listar(){
 		List<Pedido> todosPedidos = pedidoRepository.findAll();
-		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+		List<PedidoResumoDTO> pedidosDTO = pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+		
+		MappingJacksonValue pedidosWrapper = new MappingJacksonValue(pedidosDTO);
+		
+		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
+		filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.filterOutAllExcept("codigo","valorTotal"));
+		
+		pedidosWrapper.setFilters(filterProvider);
+		
+		return pedidosWrapper;
 	}
+	
+//	@GetMapping
+//	public List<PedidoResumoDTO> listar(){
+//		List<Pedido> todosPedidos = pedidoRepository.findAll();
+//		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+//	}
 	
 	@GetMapping("/{codigoPedido}")
 	public PedidoDTO buscar(@PathVariable String codigoPedido) {

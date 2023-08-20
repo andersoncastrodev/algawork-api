@@ -3,11 +3,14 @@ package com.algoworks.algafood.api.modelDTO;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@JsonFilter("pedidoFilter")
 public class PedidoResumoDTO {
 
 	private String codigo;
