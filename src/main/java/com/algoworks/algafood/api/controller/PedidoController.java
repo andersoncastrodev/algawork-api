@@ -1,9 +1,9 @@
 package com.algoworks.algafood.api.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.algoworks.algafood.api.assembler.PedidoInputDisassembler;
 import com.algoworks.algafood.api.assembler.PedidoModelAssembler;
 import com.algoworks.algafood.api.assembler.PedidoResumoModelAssembler;
@@ -24,8 +23,6 @@ import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.model.repository.PedidoRepository;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import jakarta.validation.Valid;
 
@@ -49,26 +46,27 @@ public class PedidoController {
 	private PedidoInputDisassembler pedidoInputDisassembler;
 	
 	
-	@GetMapping
-	public MappingJacksonValue listar(){
-		List<Pedido> todosPedidos = pedidoRepository.findAll();
-		List<PedidoResumoDTO> pedidosDTO = pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
-		
-		MappingJacksonValue pedidosWrapper = new MappingJacksonValue(pedidosDTO);
-		
-		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
-		filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.filterOutAllExcept("codigo","valorTotal"));
-		
-		pedidosWrapper.setFilters(filterProvider);
-		
-		return pedidosWrapper;
-	}
-	
+	//Usando o @JsonFilter("pedidoFilter") para consultar na API mais dinamicas ainda. Depis tipo um sql no banco de dados.
 //	@GetMapping
-//	public List<PedidoResumoDTO> listar(){
+//	public MappingJacksonValue listar(){
 //		List<Pedido> todosPedidos = pedidoRepository.findAll();
-//		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+//		List<PedidoResumoDTO> pedidosDTO = pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+//		
+//		MappingJacksonValue pedidosWrapper = new MappingJacksonValue(pedidosDTO);
+//		
+//		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
+//		filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.filterOutAllExcept("codigo","valorTotal"));
+//		
+//		pedidosWrapper.setFilters(filterProvider);
+//		
+//		return pedidosWrapper;
 //	}
+	
+	@GetMapping
+	public List<PedidoResumoDTO> listar(){
+		List<Pedido> todosPedidos = pedidoRepository.findAll();
+		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+	}
 	
 	@GetMapping("/{codigoPedido}")
 	public PedidoDTO buscar(@PathVariable String codigoPedido) {
