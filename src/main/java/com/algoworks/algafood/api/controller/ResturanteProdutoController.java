@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,12 +45,32 @@ public class ResturanteProdutoController {
 	@Autowired
 	private ProdutoInputDisassembler produtoInputDisassembler;
 	
+//	@GetMapping
+//	public List<ProdutoDTO> listar(@PathVariable Long restauranteId){
+//		
+//		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
+//
+//		List<Produto> todosProdutos = produtoRepository.findByRestaurante(restaurante);
+//		
+//		return produtoModelAssembler.toColletionModel(todosProdutos);
+//	}
+	
 	@GetMapping
-	public List<ProdutoDTO> listar(@PathVariable Long restauranteId){
+	public List<ProdutoDTO> listar(@PathVariable Long restauranteId, @RequestParam(required = false) boolean incluirInativos){
 		
 		Restaurante restaurante = cadastroResturanteService.buscarOuFalhar(restauranteId);
-
-		List<Produto> todosProdutos = produtoRepository.findByRestaurante(restaurante);
+		
+		List<Produto> todosProdutos = null;
+		
+		if(incluirInativos) {
+			//chamar outro consulta.
+			todosProdutos = produtoRepository.findTodosByRestaurante(restaurante);
+			
+		}else {
+			//Chamar apenas os que estão com status ativos.
+			todosProdutos = produtoRepository.findAtivosByRestaurante(restaurante);
+		}
+		
 		
 		return produtoModelAssembler.toColletionModel(todosProdutos);
 	}
