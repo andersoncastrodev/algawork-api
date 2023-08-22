@@ -22,7 +22,9 @@ import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.model.repository.PedidoRepository;
+import com.algoworks.algafood.domain.model.repository.filter.PedidoFilter;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
+import com.algoworks.algafood.infrastructere.repository.spec.PedidoSpec;
 
 import jakarta.validation.Valid;
 
@@ -62,11 +64,18 @@ public class PedidoController {
 //		return pedidosWrapper;
 //	}
 	
+//	@GetMapping
+//	public List<PedidoResumoDTO> listar(){
+//		List<Pedido> todosPedidos = pedidoRepository.findAll();
+//		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
+//	}
+	
 	@GetMapping
-	public List<PedidoResumoDTO> listar(){
-		List<Pedido> todosPedidos = pedidoRepository.findAll();
+	public List<PedidoResumoDTO> pesquisar(PedidoFilter filtro){
+		List<Pedido> todosPedidos = pedidoRepository.findAll(PedidoSpec.usandoFiltro(filtro));
 		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
 	}
+
 	
 	@GetMapping("/{codigoPedido}")
 	public PedidoDTO buscar(@PathVariable String codigoPedido) {
