@@ -13,11 +13,7 @@ public class PedidoSpec {
 
 	public static Specification<Pedido> usandoFiltro(PedidoFilter filtro){
 		return (root, query, builder)->{
-
-			// Problema N + 1		
-//			root.fetch("restaurante").fetch("cozinha");
-//			root.fetch("cliente");
-			
+	
 			var predicates = new ArrayList<Predicate>();
 			
 			if(filtro.getClienteId() != null) {
@@ -27,4 +23,5 @@ public class PedidoSpec {
 			return builder.and(predicates.toArray(new Predicate[0]));
 		};
 	}
+
 }
