@@ -13,7 +13,7 @@ public class PedidoSpec {
 
 	public static Specification<Pedido> usandoFiltro(PedidoFilter filtro){
 		return (root, query, builder)->{
-			
+				
 			//Resolvendo o N + 1
 			root.fetch("restaurante").fetch("cozinha");
 			root.fetch("restaurante").fetch("endereco").fetch("cidade").fetch("estado");

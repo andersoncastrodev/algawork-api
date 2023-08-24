@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,6 +36,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	private MessageSource messageSource;
 	
 	//USANDO O PRADRAO RFC 7807 de Resposta de exception ao Usuario.
+		
+		
+	
+		@Override
+		protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatusCode status,
+				WebRequest request) {
+			// TODO Auto-generated method stub
+			
+			
+			
+			return super.handleBindException(ex, headers, status, request);
+		}
+	
 	
 		@ExceptionHandler(EntidadeNaoEncontradaException.class)
 		public ResponseEntity<?> handleEntidadeNaoEncontradaException(EntidadeNaoEncontradaException ex, WebRequest request) {
