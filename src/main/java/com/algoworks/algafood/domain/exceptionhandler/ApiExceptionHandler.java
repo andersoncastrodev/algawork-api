@@ -203,7 +203,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			    return handleExceptionInternal(ex, problem, headers, status, request);
 		}
 		
-	/////////////////////////// -------------FIM -----------------  ////////////////////////////////////////////////////	
+	/////////////////////////// -------------- FIM ------------------ ////////////////////////////////////////////////////	
 
 		@Override
 		protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
