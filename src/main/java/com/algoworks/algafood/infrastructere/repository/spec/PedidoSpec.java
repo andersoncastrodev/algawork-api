@@ -13,12 +13,16 @@ public class PedidoSpec {
 
 	public static Specification<Pedido> usandoFiltro(PedidoFilter filtro){
 		return (root, query, builder)->{
-				
-			//Resolvendo o N + 1
-			root.fetch("restaurante").fetch("cozinha");
-			root.fetch("restaurante").fetch("endereco").fetch("cidade").fetch("estado");
-			root.fetch("cliente");
 			
+			
+			if(Pedido.class.equals(query.getResultType())) {
+				
+				//Resolvendo o N + 1
+				root.fetch("restaurante").fetch("cozinha");
+				root.fetch("restaurante").fetch("endereco").fetch("cidade").fetch("estado");
+				root.fetch("cliente");		
+			}
+
 			var predicates = new ArrayList<Predicate>();
 			
 			if(filtro.getClienteId() != null) {
