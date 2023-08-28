@@ -26,10 +26,10 @@ import com.algoworks.algafood.api.modelDTO.PedidoResumoDTO;
 import com.algoworks.algafood.core.data.PageableTranslator;
 import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
+import com.algoworks.algafood.domain.filter.PedidoFilter;
 import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.repository.PedidoRepository;
-import com.algoworks.algafood.domain.repository.filter.PedidoFilter;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
 import com.algoworks.algafood.infrastructere.repository.spec.PedidoSpec;
 
