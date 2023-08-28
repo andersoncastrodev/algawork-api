@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
-import com.algoworks.algafood.domain.model.repository.CustomJpaRepository;
+import com.algoworks.algafood.domain.repository.CustomJpaRepository;
 
 import jakarta.persistence.EntityManager;
 

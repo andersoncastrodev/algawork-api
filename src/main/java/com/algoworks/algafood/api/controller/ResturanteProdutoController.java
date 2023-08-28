@@ -20,7 +20,7 @@ import com.algoworks.algafood.api.model.input.ProdutoInput;
 import com.algoworks.algafood.api.modelDTO.ProdutoDTO;
 import com.algoworks.algafood.domain.model.Produto;
 import com.algoworks.algafood.domain.model.Restaurante;
-import com.algoworks.algafood.domain.model.repository.ProdutoRepository;
+import com.algoworks.algafood.domain.repository.ProdutoRepository;
 import com.algoworks.algafood.domain.service.CadastroProdutoService;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
 

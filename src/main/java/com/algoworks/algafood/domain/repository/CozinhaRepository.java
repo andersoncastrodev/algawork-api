@@ -1,4 +1,4 @@
-package com.algoworks.algafood.domain.model.repository;
+package com.algoworks.algafood.domain.repository;
 
 import java.util.List;
 import java.util.Optional;

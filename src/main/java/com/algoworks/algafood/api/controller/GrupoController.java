@@ -21,7 +21,7 @@ import com.algoworks.algafood.api.modelDTO.GrupoDTO;
 import com.algoworks.algafood.domain.exception.GrupoNaoEncontradoException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Grupo;
-import com.algoworks.algafood.domain.model.repository.GrupoRepository;
+import com.algoworks.algafood.domain.repository.GrupoRepository;
 import com.algoworks.algafood.domain.service.CadastroGrupoService;
 
 import jakarta.validation.Valid;

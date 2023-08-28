@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.exception.EstadoNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Estado;
-import com.algoworks.algafood.domain.model.repository.EstadoRepository;
+import com.algoworks.algafood.domain.repository.EstadoRepository;
 
 @Service
 public class CadastroEstadoService {

@@ -2,7 +2,6 @@ package com.algoworks.algafood.api.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +22,7 @@ import com.algoworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.EstadoNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Cidade;
-import com.algoworks.algafood.domain.model.repository.CidadeRepository;
+import com.algoworks.algafood.domain.repository.CidadeRepository;
 import com.algoworks.algafood.domain.service.CadastroCidadeService;
 
 import jakarta.validation.Valid;

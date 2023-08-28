@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.exception.FormaPagamentoNaoEncontradaException;
 import com.algoworks.algafood.domain.model.FormaPagamento;
-import com.algoworks.algafood.domain.model.repository.FormaPagamentoRepository;
+import com.algoworks.algafood.domain.repository.FormaPagamentoRepository;	
 
 @Service
 public class CadastroFormaPagamentoService {

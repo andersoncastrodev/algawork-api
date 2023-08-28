@@ -3,11 +3,12 @@ package com.algoworks.algafood.infrastructere.repository;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.algoworks.algafood.domain.model.Restaurante;
-import com.algoworks.algafood.domain.model.repository.RestauranteRepositoryQueries;
+import com.algoworks.algafood.domain.repository.RestauranteRepositoryQueries;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

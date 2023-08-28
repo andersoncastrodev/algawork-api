@@ -5,11 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.algoworks.algafood.domain.exception.ProdutoNaoEncontradoException;
-import com.algoworks.algafood.domain.exception.UsuarioNaoEncontradoException;
 import com.algoworks.algafood.domain.model.Produto;
-import com.algoworks.algafood.domain.model.Usuario;
-import com.algoworks.algafood.domain.model.repository.ProdutoRepository;
-import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
+import com.algoworks.algafood.domain.repository.ProdutoRepository;
 
 @Service
 public class CadastroProdutoService {

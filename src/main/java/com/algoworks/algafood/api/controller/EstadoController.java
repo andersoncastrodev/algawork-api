@@ -21,7 +21,7 @@ import com.algoworks.algafood.api.modelDTO.EstadoDTO;
 import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Estado;
-import com.algoworks.algafood.domain.model.repository.EstadoRepository;
+import com.algoworks.algafood.domain.repository.EstadoRepository;
 import com.algoworks.algafood.domain.service.CadastroEstadoService;
 
 import jakarta.validation.Valid;

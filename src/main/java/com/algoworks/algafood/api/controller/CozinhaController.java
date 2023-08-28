@@ -24,7 +24,7 @@ import com.algoworks.algafood.api.modelDTO.CozinhaDTO;
 import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Cozinha;
-import com.algoworks.algafood.domain.model.repository.CozinhaRepository;
+import com.algoworks.algafood.domain.repository.CozinhaRepository;
 import com.algoworks.algafood.domain.service.CadastroCozinhaService;
 
 import jakarta.validation.Valid;

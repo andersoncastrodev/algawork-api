@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.algoworks.algafood.domain.exception.PermissaoNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Permissao;
-import com.algoworks.algafood.domain.model.repository.PermissaoRepository;
+import com.algoworks.algafood.domain.repository.PermissaoRepository;
 
 @Service
 public class CadastroPermissaoService {

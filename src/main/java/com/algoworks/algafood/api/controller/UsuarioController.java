@@ -23,7 +23,7 @@ import com.algoworks.algafood.api.modelDTO.UsuarioDTO;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.UsuarioNaoEncontradoException;
 import com.algoworks.algafood.domain.model.Usuario;
-import com.algoworks.algafood.domain.model.repository.UsuarioRepository;
+import com.algoworks.algafood.domain.repository.UsuarioRepository;
 import com.algoworks.algafood.domain.service.CadastroUsuarioService;
 
 import jakarta.validation.Valid;

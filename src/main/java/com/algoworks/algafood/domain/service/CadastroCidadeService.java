@@ -9,7 +9,7 @@ import com.algoworks.algafood.domain.exception.CidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Estado;
-import com.algoworks.algafood.domain.model.repository.CidadeRepository;
+import com.algoworks.algafood.domain.repository.CidadeRepository;
 
 @Service
 public class CadastroCidadeService {

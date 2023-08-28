@@ -7,15 +7,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
-import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.model.Cozinha;
 import com.algoworks.algafood.domain.model.FormaPagamento;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.Usuario;
-import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
+import com.algoworks.algafood.domain.repository.RestauranteRepository;
 
 @Service
 public class CadastroResturanteService {

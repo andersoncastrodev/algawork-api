@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.algoworks.algafood.api.assembler.PedidoInputDisassembler;
 import com.algoworks.algafood.api.assembler.PedidoModelAssembler;
 import com.algoworks.algafood.api.assembler.PedidoResumoModelAssembler;
@@ -27,8 +28,8 @@ import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Usuario;
-import com.algoworks.algafood.domain.model.repository.PedidoRepository;
-import com.algoworks.algafood.domain.model.repository.filter.PedidoFilter;
+import com.algoworks.algafood.domain.repository.PedidoRepository;
+import com.algoworks.algafood.domain.repository.filter.PedidoFilter;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
 import com.algoworks.algafood.infrastructere.repository.spec.PedidoSpec;
 
@@ -115,6 +116,7 @@ public class PedidoController {
 	}	
 	
 	private Pageable traduzirPageable(Pageable apiPageable) {
+		
 		//Mapeamento DE para 
 		var mapeamento = Map.of(
 				"codigo", "codigo",

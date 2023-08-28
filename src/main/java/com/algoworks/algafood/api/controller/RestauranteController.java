@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +23,7 @@ import com.algoworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.exception.RestauranteNaoEncontradaException;
 import com.algoworks.algafood.domain.model.Restaurante;
-import com.algoworks.algafood.domain.model.repository.RestauranteRepository;
+import com.algoworks.algafood.domain.repository.RestauranteRepository;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
 import com.algoworks.algafood.view.RestauranteView;
 import com.fasterxml.jackson.annotation.JsonView;

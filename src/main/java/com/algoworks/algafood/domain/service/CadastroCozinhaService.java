@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.algoworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.model.Cozinha;
-import com.algoworks.algafood.domain.model.repository.CozinhaRepository;
+import com.algoworks.algafood.domain.repository.CozinhaRepository;
 
 @Service
 public class CadastroCozinhaService {

@@ -11,7 +11,7 @@ import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.Produto;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.model.Usuario;
-import com.algoworks.algafood.domain.model.repository.PedidoRepository;
+import com.algoworks.algafood.domain.repository.PedidoRepository;
 
 import jakarta.transaction.Transactional;
 

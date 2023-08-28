@@ -2,7 +2,9 @@ package com.algoworks.algafood.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.algoworks.algafood.domain.model.Pedido;
+
 import jakarta.transaction.Transactional;
 
 @Service

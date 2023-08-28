@@ -12,7 +12,7 @@ import com.algoworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algoworks.algafood.domain.exception.GrupoNaoEncontradoException;
 import com.algoworks.algafood.domain.model.Grupo;
 import com.algoworks.algafood.domain.model.Permissao;
-import com.algoworks.algafood.domain.model.repository.GrupoRepository;
+import com.algoworks.algafood.domain.repository.GrupoRepository;
 
 @Service
 public class CadastroGrupoService {
