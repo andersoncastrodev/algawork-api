@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 public class VendaDiariaFilter {
 
-	private Long clienteId;
+	private Long restauranteId;
 	private OffsetDateTime dataCriacaoInicio;
 	private OffsetDateTime dataCriacaoFim;
 
