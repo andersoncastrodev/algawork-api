@@ -10,7 +10,7 @@ import com.algoworks.algafood.domain.model.Produto;
 import com.algoworks.algafood.domain.model.Restaurante;
 
 @Repository
-public interface ProdutoRepository extends CustomJpaRepository<Produto, Long>  {
+public interface ProdutoRepository extends CustomJpaRepository<Produto, Long>, ProdutoRepositoryQueries  {
 
 	//Pegar fazer o metodo buscarOuFalhar
 	@Query("from Produto where restaurante.id = :restaurante and id = :produto")
