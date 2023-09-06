@@ -1,5 +1,6 @@
 package com.algoworks.algafood.api.controller;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class RestauranteProdutoFotoController {
 	
 	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public FotoProdutoDTO atualizarFoto(@PathVariable Long restauranteId, 
-		@PathVariable Long produtoId, @Valid FotoProdutoInput fotoProdutoInput) {
+		@PathVariable Long produtoId, @Valid FotoProdutoInput fotoProdutoInput) throws IOException {
 	
 		Produto produto = cadastroProdutoService.buscarOuFalhar(restauranteId, produtoId);
 		
@@ -50,7 +51,7 @@ public class RestauranteProdutoFotoController {
 		fotoProduto.setNomeArquivo(arquivo.getOriginalFilename());
 		
 	
-		FotoProduto fotoSalva = catalogoFotoPrudutoService.salvar(fotoProduto);
+		FotoProduto fotoSalva = catalogoFotoPrudutoService.salvar(fotoProduto, arquivo.getInputStream());
 		
 		return fotoProdutoModelAssembler.toModelDTO(fotoSalva);
 		
