@@ -27,6 +27,4 @@ public interface CozinhaRepository extends JpaRepository<Cozinha, Long> {
 	//Retorna True se o nome existe. KeyWord = exists
 	boolean existsByNome(String nome);
 	
-	
-	
 }

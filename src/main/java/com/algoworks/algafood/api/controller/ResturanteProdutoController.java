@@ -18,6 +18,7 @@ import com.algoworks.algafood.api.assembler.ProdutoInputDisassembler;
 import com.algoworks.algafood.api.assembler.ProdutoModelAssembler;
 import com.algoworks.algafood.api.model.input.ProdutoInput;
 import com.algoworks.algafood.api.modelDTO.ProdutoDTO;
+import com.algoworks.algafood.domain.model.FotoProduto;
 import com.algoworks.algafood.domain.model.Produto;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.repository.ProdutoRepository;
@@ -111,5 +112,7 @@ public class ResturanteProdutoController {
 		
 		return produtoModelAssembler.toModelDTO(produtoAtual);
 	}
+	
+
 	
 }

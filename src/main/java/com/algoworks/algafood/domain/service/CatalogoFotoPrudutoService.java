@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.algoworks.algafood.domain.exception.FotoProdutoNaoEncontradaException;
 import com.algoworks.algafood.domain.model.FotoProduto;
 import com.algoworks.algafood.domain.repository.ProdutoRepository;
 import com.algoworks.algafood.domain.service.FotoStorageService.NovaFoto;
@@ -59,5 +60,10 @@ public class CatalogoFotoPrudutoService {
 		fotoStorageService.substituir(nomeArquivoExistente,novaFoto);
 		
 		return foto;
+	}
+	
+	public FotoProduto buscarOuFalhar(Long restauranteId, Long produtoId) {
+	    return produtoRepository.findFotoById(restauranteId, produtoId)
+	            .orElseThrow(() -> new FotoProdutoNaoEncontradaException(restauranteId, produtoId));
 	}
 }
