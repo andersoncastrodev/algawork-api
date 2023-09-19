@@ -1,9 +1,12 @@
 package com.algoworks.algafood.api.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,10 +49,21 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 	
+//	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
+//	@GetMapping
+//	public List<RestauranteDTO> listar(){
+//		return restauranteModelAssembler.toColletionModel( restauranteRepository.findAll() );
+//	}
+	
 	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
 	@GetMapping
-	public List<RestauranteDTO> listar(){
-		return restauranteModelAssembler.toColletionModel( restauranteRepository.findAll() );
+	public ResponseEntity<List<RestauranteDTO>> listar(){
+		
+		List<RestauranteDTO> restauranteDTO = restauranteModelAssembler.toColletionModel( restauranteRepository.findAll());
+		
+		return ResponseEntity.ok()
+				.header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,"http://127.0.0.1:5500")
+				.body(restauranteDTO);
 	}
 	
 	@GetMapping("/{restauranteId}")
