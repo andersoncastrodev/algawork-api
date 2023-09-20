@@ -4,9 +4,7 @@ package com.algoworks.algafood.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.algoworks.algafood.api.assembler.RestauranteInputDisassembler;
 import com.algoworks.algafood.api.assembler.RestauranteModelAssembler;
 import com.algoworks.algafood.api.model.input.RestauranteInput;
@@ -30,9 +27,9 @@ import com.algoworks.algafood.domain.repository.RestauranteRepository;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
 import com.algoworks.algafood.view.RestauranteView;
 import com.fasterxml.jackson.annotation.JsonView;
-
 import jakarta.validation.Valid;
 
+//@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/restaurantes")
 public class RestauranteController {
@@ -49,22 +46,24 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 	
-//	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
-//	@GetMapping
-//	public List<RestauranteDTO> listar(){
-//		return restauranteModelAssembler.toColletionModel( restauranteRepository.findAll() );
-//	}
-	
 	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
 	@GetMapping
-	public ResponseEntity<List<RestauranteDTO>> listar(){
-		
-		List<RestauranteDTO> restauranteDTO = restauranteModelAssembler.toColletionModel( restauranteRepository.findAll());
-		
-		return ResponseEntity.ok()
-				.header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,"http://127.0.0.1:5500")
-				.body(restauranteDTO);
+	public List<RestauranteDTO> listar(){
+		return restauranteModelAssembler.toColletionModel( restauranteRepository.findAll() );
 	}
+	
+	//Metodo de Permitir o CORS atravez do Cabelhaçario
+	
+//	@JsonView(RestauranteView.Resumo.class) //Para resumir a apresentacao do recurso.
+//	@GetMapping
+//	public ResponseEntity<List<RestauranteDTO>> listar(){
+//		
+//		List<RestauranteDTO> restauranteDTO = restauranteModelAssembler.toColletionModel( restauranteRepository.findAll());
+//		
+//		return ResponseEntity.ok()
+//				.header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,"http://127.0.0.1:5500")
+//				.body(restauranteDTO);
+//	}
 	
 	@GetMapping("/{restauranteId}")
 	public RestauranteDTO buscar(@PathVariable Long restauranteId) {
