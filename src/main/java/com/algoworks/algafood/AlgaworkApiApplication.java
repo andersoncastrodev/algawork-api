@@ -7,6 +7,7 @@ import com.algoworks.algafood.infrastructere.repository.CustomJpaRepositoryImp;
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImp.class)
+//@EnableWebMvc 
 public class AlgaworkApiApplication {
 
 	public static void main(String[] args) {
