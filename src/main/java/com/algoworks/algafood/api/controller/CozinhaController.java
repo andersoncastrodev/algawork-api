@@ -48,17 +48,17 @@ public class CozinhaController {
 	@Autowired
 	private CozinhaInputDisassembler cozinhatDisassembler;
 	
-	@GetMapping
-	public Page<CozinhaDTO> listar(Pageable pageable){
-		
-		Page<Cozinha> todasCozinhas = cozinhaRepository.findAll(pageable);
-		
-		List<CozinhaDTO> cozinhaDTOs = cozinhaAssembler.toColletionModel(todasCozinhas.getContent());
-		
-		Page<CozinhaDTO> cozinhaDTOsPage = new PageImpl<>(cozinhaDTOs, pageable, todasCozinhas.getTotalElements());
-		
-		return cozinhaDTOsPage;
-	}
+//	@GetMapping
+//	public Page<CozinhaDTO> listar(Pageable pageable){
+//		
+//		Page<Cozinha> todasCozinhas = cozinhaRepository.findAll(pageable);
+//		
+//		List<CozinhaDTO> cozinhaDTOs = cozinhaAssembler.toColletionModel(todasCozinhas.getContent());
+//		
+//		Page<CozinhaDTO> cozinhaDTOsPage = new PageImpl<>(cozinhaDTOs, pageable, todasCozinhas.getTotalElements());
+//		
+//		return cozinhaDTOsPage;
+//	}
 	
 	@GetMapping(value = "/{cozinhaId}")
 	public CozinhaDTO buscar(@PathVariable Long cozinhaId) {
