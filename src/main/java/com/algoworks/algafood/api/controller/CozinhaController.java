@@ -2,6 +2,7 @@ package com.algoworks.algafood.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -35,6 +36,8 @@ public class CozinhaController {
 
 	//Obs: Usa a classe de Repository são apenas Consultas.
 	//Obs: Usa a classe Service para  Cadastro, Atualizar e Deletar.
+	
+	private final static Logger LOGGER;
 	
 	@Autowired
 	private CozinhaRepository cozinhaRepository;
