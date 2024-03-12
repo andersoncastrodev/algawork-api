@@ -2,6 +2,7 @@ package com.algoworks.algafood.api.controller;
 
 import java.util.List;
 
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,9 @@ import com.algoworks.algafood.domain.repository.CozinhaRepository;
 import com.algoworks.algafood.domain.service.CadastroCozinhaService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping( value = "/cozinhas")
 public class CozinhaController {
@@ -37,8 +40,7 @@ public class CozinhaController {
 	//Obs: Usa a classe de Repository são apenas Consultas.
 	//Obs: Usa a classe Service para  Cadastro, Atualizar e Deletar.
 	
-	private final static Logger LOGGER;
-	
+
 	@Autowired
 	private CozinhaRepository cozinhaRepository;
 	
@@ -53,6 +55,8 @@ public class CozinhaController {
 	
 	@GetMapping
 	public Page<CozinhaDTO> listar(Pageable pageable){
+		
+		log.info("Consultando cozinhas com páginas de {} registros...", pageable.getPageSize());
 		
 		Page<Cozinha> todasCozinhas = cozinhaRepository.findAll(pageable);
 		
