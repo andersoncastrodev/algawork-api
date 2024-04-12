@@ -33,7 +33,7 @@ import com.algoworks.algafood.domain.service.CatalogoFotoPrudutoService;
 import com.algoworks.algafood.domain.service.FotoStorageService;
 
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/restaurante/{restauranteId}/produtos/{produtoId}/foto")

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import com.algoworks.algafood.domain.repository.CustomJpaRepository;
 
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 
 public class CustomJpaRepositoryImp<T, ID> extends SimpleJpaRepository<T, ID> implements CustomJpaRepository<T, ID>{
 
@@ -26,7 +26,7 @@ public class CustomJpaRepositoryImp<T, ID> extends SimpleJpaRepository<T, ID> im
 	public Optional<T> buscarPrimeiro() {
 		
 		//Montando a consulta dinanica com jpql
-		var jpql = "from "+ getDomainClass().getName();
+		 String jpql = "from "+ getDomainClass().getName();
 		
 		//Mesmo sql com o limit 1 para trazer apenas um registro
 		T entity = entityManager.createQuery(jpql, getDomainClass()).setMaxResults(1).getSingleResult();

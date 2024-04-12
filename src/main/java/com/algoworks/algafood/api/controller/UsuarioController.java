@@ -26,7 +26,7 @@ import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.repository.UsuarioRepository;
 import com.algoworks.algafood.domain.service.CadastroUsuarioService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")

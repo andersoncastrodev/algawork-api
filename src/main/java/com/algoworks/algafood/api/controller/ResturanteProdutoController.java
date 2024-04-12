@@ -2,6 +2,8 @@ package com.algoworks.algafood.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +20,11 @@ import com.algoworks.algafood.api.assembler.ProdutoInputDisassembler;
 import com.algoworks.algafood.api.assembler.ProdutoModelAssembler;
 import com.algoworks.algafood.api.model.input.ProdutoInput;
 import com.algoworks.algafood.api.modelDTO.ProdutoDTO;
-import com.algoworks.algafood.domain.model.FotoProduto;
 import com.algoworks.algafood.domain.model.Produto;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.repository.ProdutoRepository;
 import com.algoworks.algafood.domain.service.CadastroProdutoService;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/restaurante/{restauranteId}/produtos")

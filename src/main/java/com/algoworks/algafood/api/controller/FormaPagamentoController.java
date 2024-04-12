@@ -24,7 +24,7 @@ import com.algoworks.algafood.domain.model.FormaPagamento;
 import com.algoworks.algafood.domain.repository.FormaPagamentoRepository;
 import com.algoworks.algafood.domain.service.CadastroFormaPagamentoService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/formapagamento")

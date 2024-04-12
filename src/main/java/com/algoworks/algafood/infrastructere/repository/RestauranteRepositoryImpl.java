@@ -10,9 +10,9 @@ import org.springframework.util.StringUtils;
 import com.algoworks.algafood.domain.model.Restaurante;
 import com.algoworks.algafood.domain.repository.RestauranteRepositoryQueries;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 @Repository
 public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
@@ -37,11 +37,11 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 	@Override
 	public List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal){
 		
-		var jpql = new StringBuilder();
+		 StringBuilder jpql = new StringBuilder();
 		
 		jpql.append("from Restaurante where 0 = 0 ");
 		
-		var parametros = new HashMap<String, Object>();
+		 HashMap<String, Object> parametros = new HashMap<String, Object>();
 		
 		if(StringUtils.hasLength(nome)) {
 			jpql.append("and nome like :nome ");

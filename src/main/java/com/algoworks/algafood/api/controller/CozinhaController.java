@@ -29,7 +29,7 @@ import com.algoworks.algafood.domain.model.Cozinha;
 import com.algoworks.algafood.domain.repository.CozinhaRepository;
 import com.algoworks.algafood.domain.service.CadastroCozinhaService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

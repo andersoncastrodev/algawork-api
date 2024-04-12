@@ -9,9 +9,14 @@ import com.algoworks.algafood.domain.model.Pedido;
 import com.algoworks.algafood.domain.model.StatusPedido;
 import com.algoworks.algafood.domain.model.dto.VendaDiaria;
 import com.algoworks.algafood.domain.service.VendaQueryService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.criteria.Predicate;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CompoundSelection;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 
 @Repository
@@ -33,14 +38,14 @@ public class VendaQueryServiceImpl implements VendaQueryService {
 	@Override
 	public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro, String timeOffset) {
 		
-		var builder = manager.getCriteriaBuilder();
-		var query = builder.createQuery(VendaDiaria.class);
-		var root = query.from(Pedido.class);
+		 CriteriaBuilder builder = manager.getCriteriaBuilder();
+		 CriteriaQuery<VendaDiaria> query = builder.createQuery(VendaDiaria.class);
+		 Root<Pedido> root = query.from(Pedido.class);
 		
 		//Adicionando os predicades
-		var predicates = new ArrayList<Predicate>();
+		 ArrayList<Predicate> predicates = new ArrayList<Predicate>();
 		
-		var functionConvertTzDataCriacao = builder.function(
+		 Expression<Date> functionConvertTzDataCriacao = builder.function(
 				"convert_tz"
 				,Date.class
 				,root.get("dataCriacao")
@@ -49,13 +54,13 @@ public class VendaQueryServiceImpl implements VendaQueryService {
 				);
 		
 		// Preparando a data da consulta SQL
-		var functionDateDataCriacao = builder.function(
+		 Expression<Date> functionDateDataCriacao = builder.function(
 				"date",
 				Date.class, 
 				functionConvertTzDataCriacao);
 		
 	
-		var selection = builder.construct(VendaDiaria.class
+		 CompoundSelection<VendaDiaria> selection = builder.construct(VendaDiaria.class
 				,functionDateDataCriacao // Data do SQL
 				, builder.count(root.get("id"))  //Função count SQL
 				, builder.sum(root.get("valorTotal")) //Função sum SQL

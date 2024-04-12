@@ -1,6 +1,7 @@
 package com.algoworks.algafood.modlemapper;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,9 +19,9 @@ public class ModelMapperConfig {
 	@Bean
 	public ModelMapper modelMapper() {
 		
-		var modelMapper = new ModelMapper();
+		 ModelMapper modelMapper = new ModelMapper();
 		
-		var enderecoToEnderecoModelMap = modelMapper.createTypeMap(Endereco.class, EnderecoDTO.class);
+		TypeMap<Endereco, EnderecoDTO> enderecoToEnderecoModelMap = modelMapper.createTypeMap(Endereco.class, EnderecoDTO.class);
 		
 		//Configuração especiar para iten pedido
 		modelMapper.createTypeMap(ItemPedidoInput.class, ItemPedido.class)

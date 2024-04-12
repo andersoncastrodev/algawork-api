@@ -15,6 +15,8 @@ import com.algoworks.algafood.domain.model.dto.VendaDiaria;
 import com.algoworks.algafood.domain.service.VendaQueryService;
 import com.algoworks.algafood.domain.service.VendaReportService;
 
+import lombok.experimental.var;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType; //IMPORT CORRRETO.
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class EstatisticasController {
 		byte[] bytesPdf = vendaReportService.emitirVendasDiarias(filtro, timeOffset);
 		
 		// PARA OBRIGAR A FAZER O DOWNLOAD DO PDF.
-		var headers = new HttpHeaders();	
+	    HttpHeaders headers = new HttpHeaders();	
 		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=vendas-diarias.pdf");
 		
 		return ResponseEntity.ok()

@@ -12,7 +12,7 @@ import com.algoworks.algafood.domain.repository.ProdutoRepository;
 import com.algoworks.algafood.domain.service.FotoStorageService.NovaFoto;
 import com.algoworks.algafood.infrastructere.service.storage.LocalFotoStorageService;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 @Service
 public class CatalogoFotoPrudutoService {

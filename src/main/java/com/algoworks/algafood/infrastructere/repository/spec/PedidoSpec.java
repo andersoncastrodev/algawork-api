@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import com.algoworks.algafood.domain.filter.PedidoFilter;
 import com.algoworks.algafood.domain.model.Pedido;
 
-import jakarta.persistence.criteria.Predicate;
+import javax.persistence.criteria.Predicate;
 
 public class PedidoSpec {
 
@@ -23,7 +23,7 @@ public class PedidoSpec {
 				root.fetch("cliente");		
 			}
 
-			var predicates = new ArrayList<Predicate>();
+			 ArrayList<Predicate> predicates = new ArrayList<Predicate>();
 			
 			if(filtro.getClienteId() != null) {
 				predicates.add(builder.equal(root.get("cliente").get("id"), filtro.getClienteId()));

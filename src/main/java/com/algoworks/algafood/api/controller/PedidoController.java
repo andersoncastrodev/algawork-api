@@ -1,7 +1,8 @@
 package com.algoworks.algafood.api.controller;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,6 @@ import com.algoworks.algafood.api.assembler.PedidoResumoModelAssembler;
 import com.algoworks.algafood.api.model.input.PedidoInput;
 import com.algoworks.algafood.api.modelDTO.PedidoDTO;
 import com.algoworks.algafood.api.modelDTO.PedidoResumoDTO;
-import com.algoworks.algafood.core.data.PageableTranslator;
 import com.algoworks.algafood.domain.exception.EntidadeNaoEncontradaException;
 import com.algoworks.algafood.domain.exception.NegocioException;
 import com.algoworks.algafood.domain.filter.PedidoFilter;
@@ -32,8 +32,6 @@ import com.algoworks.algafood.domain.model.Usuario;
 import com.algoworks.algafood.domain.repository.PedidoRepository;
 import com.algoworks.algafood.domain.service.EmissaoPedidoService;
 import com.algoworks.algafood.infrastructere.repository.spec.PedidoSpec;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -118,14 +116,14 @@ public class PedidoController {
 	private Pageable traduzirPageable(Pageable apiPageable) {
 		
 		//Mapeamento DE para 
-		var mapeamento = Map.of(
-				"codigo", "codigo",
-				"restaurante.nome", "restaurante.nome",
-				"nomeCliente", "cliente.nome",
-				"valorTotal", "valorTotal"
-			);
-		
-		return PageableTranslator.translate(apiPageable, mapeamento);
+		/*
+		 * var mapeamento = Map.of( "codigo", "codigo", "restaurante.nome",
+		 * "restaurante.nome", "nomeCliente", "cliente.nome", "valorTotal", "valorTotal"
+		 * );
+		 * 
+		 * return PageableTranslator.translate(apiPageable, mapeamento);
+		 */
+		return null;
 	} 
 	
 	

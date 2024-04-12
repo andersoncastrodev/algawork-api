@@ -4,9 +4,9 @@ import org.springframework.stereotype.Repository;
 
 import com.algoworks.algafood.domain.model.FotoProduto;
 import com.algoworks.algafood.domain.repository.ProdutoRepositoryQueries;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
 public class ProdutoRepositoryImpl implements ProdutoRepositoryQueries {

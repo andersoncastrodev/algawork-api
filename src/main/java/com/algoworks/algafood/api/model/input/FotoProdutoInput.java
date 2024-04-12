@@ -1,11 +1,10 @@
 package com.algoworks.algafood.api.model.input;
 
-import org.springframework.http.MediaType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.web.multipart.MultipartFile;
-import com.algoworks.algafood.core.validation.FileContentType;
-import com.algoworks.algafood.core.validation.FileSize;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 

@@ -27,7 +27,7 @@ import com.algoworks.algafood.domain.repository.RestauranteRepository;
 import com.algoworks.algafood.domain.service.CadastroResturanteService;
 import com.algoworks.algafood.view.RestauranteView;
 import com.fasterxml.jackson.annotation.JsonView;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 //@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController

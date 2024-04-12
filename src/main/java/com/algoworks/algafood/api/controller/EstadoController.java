@@ -24,7 +24,7 @@ import com.algoworks.algafood.domain.model.Estado;
 import com.algoworks.algafood.domain.repository.EstadoRepository;
 import com.algoworks.algafood.domain.service.CadastroEstadoService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/estados")

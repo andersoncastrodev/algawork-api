@@ -25,7 +25,7 @@ import com.algoworks.algafood.domain.model.Cidade;
 import com.algoworks.algafood.domain.repository.CidadeRepository;
 import com.algoworks.algafood.domain.service.CadastroCidadeService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/cidades")

@@ -24,7 +24,7 @@ import com.algoworks.algafood.domain.model.Grupo;
 import com.algoworks.algafood.domain.repository.GrupoRepository;
 import com.algoworks.algafood.domain.service.CadastroGrupoService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/grupos")
